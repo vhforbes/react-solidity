@@ -67,7 +67,7 @@ const WaveSender = () => {
       <p>Your using wallet: {currentAccount}</p>
       {totalWaves === 0 ? <p>You have no waves</p> : <p>Your total waves are {totalWaves}</p>}
       
-      {!currentAccount ? <button onClick={connectWallet}>Connect wallet</button> : null}
+      {!currentAccount ? <button>Connect wallet</button> : null}
       
       <button onClick={sendWave}>Wave</button>
 

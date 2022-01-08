@@ -1,43 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { hasMetamask } from '../features/auth/authSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { store } from '../store/store';
 
 const App = () => {
-  // validate if has metamask
-  // auth metamask if needed
-    // if ok display the wave sender
-  const [currentAccount, setCurrentAccount] = useState("")
 
-  const haveMetamask = useSelector((state) => state.auth.value)
+
+  // const auth = useSelector(state => state.auth)
+
   const dispatch = useDispatch()
-  
-  useEffect(() => {
-    checkMetamask();
-  })
-
+  const auth = useSelector(state => state.auth)
   /**
     * Check if user has a wallet.
   */
    const checkMetamask = async () => {
     try {
       const { ethereum } = window;
-
+      
       if(ethereum) {
-        dispatch(hasMetamask());
-        console.log(haveMetamask);
+        dispatch({ type: 'haveMetamask' })
       } else {
         console.log('no meta')
       }
-
-      // const accounts = await ethereum.request({ method: "eth_accounts"})
-
-      // if (accounts.length !== 0) {
-      //   const account = accounts[0]
-      //   console.log("Found", account)
-      //   setCurrentAccount(account)
-      // } else {
-      //   console.log("no access found")
-      // }
 
     } catch (err) {
       console.log(err)
@@ -45,29 +28,35 @@ const App = () => {
   }
 
     /**
-    * Connect wallet method
-  */
+    * Authenticate metamask method
+    */
 
-     const connectWallet = async () => {
+     const authenticateMetamask = async () => {
       try {
         const { ethereum } = window
-  
+
         if(!ethereum) {
           return
         } 
   
         const accounts = await ethereum.request({method: "eth_requestAccounts"})
-        console.log("connected", accounts[0])
-              setCurrentAccount(accounts[0])
+        dispatch({ type: 'saveAccounts', payload: accounts})
   
       } catch(err) {
         console.log(err)
       }
     }
 
+  useEffect(() => {
+    checkMetamask();
+  }, [])
+
   return (
     <div className="App">
       App
+      {auth.haveMetamask ? <p> HAVE METAMASK </p> : null}
+      <button onClick={authenticateMetamask}>Auth Metamask</button>
+      {auth.accounts.length !== 0 ? <p> {auth.accounts[0]} </p> : null}
     </div>
   );
 }
