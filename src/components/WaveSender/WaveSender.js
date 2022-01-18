@@ -1,16 +1,16 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
-import './App.css';
+import './WaveSender.css';
 import abi from "../../utils/WavePortal.json";
+import { useSelector } from 'react-redux';
 
 const WaveSender = () => {
-  const [currentAccount, setCurrentAccount] = useState("")
   const [totalWaves, setTotalWaves] = useState(0)
+
+  const auth = useSelector(state => state.auth)
+
   const contractAddress = "0xa4eeca7e0aa2a0d5a916843c033a5d25400c4d5b"
   const contractABI = abi.abi
-
-
-
 
 
   const getWaves = async () => {
@@ -59,17 +59,14 @@ const WaveSender = () => {
   }
 
   useEffect(() => {
-    checkIfWallet()
+    getWaves()
   }, [])
 
   return (
-    <div className="App">
-      <p>Your using wallet: {currentAccount}</p>
-      {totalWaves === 0 ? <p>You have no waves</p> : <p>Your total waves are {totalWaves}</p>}
-      
-      {!currentAccount ? <button>Connect wallet</button> : null}
-      
-      <button onClick={sendWave}>Wave</button>
+    <div className="wave-sender">
+      <p className='greeting-text'>Hey! Glad you dropped by! Here you can send me a wave trough the Rinkeby Test Network.</p>
+      <button className='send-wave-btn' onClick={sendWave}>👋</button>
+      {totalWaves === 0 ? <p>Forbes have no waves</p> : <p>Forbes has {totalWaves} total waves!</p>}
 
     </div>
   );

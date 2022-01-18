@@ -1,0 +1,32 @@
+.header {
+  background-color: #0E134A;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+@media screen and (max-width: 963px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.welcome {
+  max-width: 320px;
+}
+
+.wave-header {
+  font-size: 30px;
+  background-color: #0E134A;
+}
+
+.account {
+  max-width: 320px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
