@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { store } from '../../store/store';
+import './Authenticator.css'
 
 const Authenticator = () => {
   const dispatch = useDispatch()
@@ -47,19 +47,22 @@ const Authenticator = () => {
     }, [])
 
   return (
-    <div className="App">
+    <div className="Authenticator">
       {auth.haveMetamask ? 
-      <div>
-        <p> You have metamask </p>
+      <div className='auth-metamask'>
         {
           auth?.accounts.length === 0 ? 
-          <button onClick={authenticateMetamask}>Auth Metamask</button> : 
-          <p> Your using account: <br/> {auth.accounts[0]} </p>
+          <div className='auth-metamask'>
+            <p>Authenticate metamask:</p>
+            <button className='metamask-button' onClick={authenticateMetamask}>🦊</button>
+          </div>
+          : 
+          null
         }
       </div>
         : 
       <div>
-        <p>YOU NEED METAMASK TO USE THIS APP</p>
+        <p className='need-metamask'>Please install metamask to use this app</p>
       </div>
       }
     </div>
