@@ -1,7 +1,7 @@
 .wave-sender {
   color: white;
   font-size: 24px;
-  max-width: 500px;
+  max-width: 760px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -11,15 +11,79 @@
   padding: 0 10px;
 }
 
+.input-container {
+  width: 600px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  position: relative;
+  top: 30px;
+  background-color: #15161b;
+  width: 140px;
+  margin: 0 auto;
+  padding-bottom: 2px;
+}
+
+.message-input {
+  margin-top: 20px;
+  width: 50%;
+  height: 50px;
+  font-size: 16px;
+  background-color: #0e134a;
+  color: white;
+  border-color: transparent;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.message-input:focus {
+  outline: none;
+}
+
 .send-wave-btn {
   border: none;
   font-size: 50px;
   cursor: pointer;
-  background-color: #15161B;
+  background-color: #39393b56;
   margin: 20px 0;
   border-radius: 20px;
 }
 
 .send-wave-btn:hover {
   background-color: rgba(255, 255, 255, 0.185);
+}
+
+.message-warning {
+  font-size: 14px;
+  color: red;
+
+}
+
+.waves-list {
+  font-size: 16px;
+}
+
+.message-board {
+  margin-top: 30px;
+  padding: 15px;
+  border: 10px solid #0e134a;
+  border-radius: 25px;
+}
+
+.sender-wallet {
+  max-width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.loading {
+  color: white;
+  font-size: 26px;
+  text-align: center;
+  margin-top: 50px;
 }
